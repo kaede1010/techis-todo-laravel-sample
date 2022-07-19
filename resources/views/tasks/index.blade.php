@@ -7,24 +7,38 @@
     <!-- バリデーションエラーの表示 -->
     @include('common.errors')
 
+    <!-- フラッシュメッセージ 登録の場合 -->
+    @if (session('flash_register_message'))
+    <div class="flash_message bg-success text-center py-3 mb-3">
+        <p class="text-white m-0">{{ session('flash_register_message') }}</p>
+    </div>
+    @endif
+
+    <!-- フラッシュメッセージ 削除の場合 -->
+    @if (session('flash_delete_message'))
+    <div class="flash_message bg-danger text-center py-3 mb-3">
+        <p class="text-white m-0">{{ session('flash_delete_message') }}</p>
+    </div>
+    @endif
+
     <!-- 新タスクフォーム -->
     <form action="{{ url('task') }}" method="POST" class="form-horizontal">
         {{ csrf_field() }}
 
         <!-- タスク名 -->
         <div class="form-group">
-            <label for="task-name" class="col-sm-3 control-label">Task</label>
+            <label for="task-name" class="col-sm-3 control-label">Task入力欄</label>
 
             <div class="col-sm-6">
-                <input type="text" name="name" id="task-name" class="form-control">
+                <input type="text" name="name" id="task-name" class="form-control" placeholder="Taskを入力してください（50文字以内）" maxlength="50" required>
             </div>
         </div>
 
         <!-- タスク追加ボタン -->
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-6">
-                <button type="submit" class="btn btn-default">
-                    <i class="fa fa-plus"></i> Add Task
+                <button type="submit" class="btn btn-danger">
+                    <i class="fa fa-plus"></i> Task追加
                 </button>
             </div>
         </div>
@@ -35,7 +49,7 @@
 @if (count($tasks) > 0)
 <div class="panel panel-default">
     <div class="panel-heading">
-        Current Tasks
+        現在のTask内容
     </div>
 
     <div class="panel-body">
@@ -43,7 +57,7 @@
 
             <!-- テーブルヘッダ -->
             <thead>
-                <th>Task</th>
+                <th>Task一覧</th>
                 <th>&nbsp;</th>
             </thead>
 

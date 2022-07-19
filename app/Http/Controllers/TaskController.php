@@ -61,7 +61,7 @@ class TaskController extends Controller
     {
         // validate()はパラメータが有効かどうかのバリデーション(入力チェック)をしている
         $this->validate($request, [          // $requestは入力データ
-            'name' => 'required|max:255',   // nameパラメータはrequired(入力必須)でmax:255(文字数は255以下)であるというルール
+            'name' => 'required|max:50',   // nameパラメータはrequired(入力必須)でmax:50(文字数は50以下)であるというルール
         ]);
 
         // タスク作成
@@ -73,7 +73,7 @@ class TaskController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect('/tasks');
+        return redirect('/tasks')->with('flash_register_message', 'Taskが追加されました !');
     }
 
     /**
@@ -90,6 +90,6 @@ class TaskController extends Controller
         $this->authorize('destroy', $task);
 
         $task->delete();
-        return redirect('/tasks');
+        return redirect('/tasks')->with('flash_delete_message', 'Taskが削除されました !');
     }
 }
