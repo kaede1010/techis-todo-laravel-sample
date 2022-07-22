@@ -509,7 +509,7 @@
 
                         @if (Route::has('login'))
                         @auth
-                        <a href="{{ url('/home') }}" class="ml-4 text-gray-700 underline">home画面</a>
+                        <a href="{{ url('/home') }}" class="ml-4 text-gray-700 underline">Home</a>
                         @else
                         <a href="{{ route('login') }}" class="ml-4 text-gray-700 underline">Login</a>
 
