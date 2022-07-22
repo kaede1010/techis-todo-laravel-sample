@@ -1,3 +1,3 @@
 // フラッシュメッセージのfadeout
-$('.flash_message').fadeOut(3000);
+$('.flash_message').fadeOut(2000);
 
